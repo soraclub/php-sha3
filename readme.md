@@ -7,6 +7,8 @@ This PHP extension is a wrapper for the reference implementation of the SHA-3 (K
 
 This extension uses the final FIPS 202 standard published on August 5, 2015.
 
+And this extention support old Keccak method.
+
 Installation
 ------------
 1. git clone https://github.com/strawbrary/php-sha3
@@ -25,12 +27,13 @@ You may need to restart your httpd/FPM to load the extension. You can verify it 
 Usage
 ----
 ```php
-string sha3 ( string $str [, int $outputSize = 512, bool $rawOutput = false ] )
+string sha3 ( string $str [, int $outputSize = 512, bool $rawOutput = false, bool $keccakMode = false ] )
 ```
 
 * $str: The string to hash
 * $outputSize: The bit length of the output hash
 * $rawOutput: If set to true, then the hash is returned in raw binary format
+* $keccakMode: raw keccak method, use 0x01 as delimitedSuffix, which is 0x06 in standard sha3 
 
 * Return value: A hex string containing the sha3 hash of the input string
 

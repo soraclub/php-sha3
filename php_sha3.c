@@ -60,8 +60,9 @@ PHP_FUNCTION(sha3)
 #endif
     char *data;
     zend_bool rawOutput = 0;
+    zend_bool keccakMode = 0;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|lb", &data, &dataByteLength, &hashBitLength, &rawOutput) == FAILURE) {
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|lbb", &data, &dataByteLength, &hashBitLength, &rawOutput, &keccakMode) == FAILURE) {
         return;
     }
     
@@ -72,7 +73,7 @@ PHP_FUNCTION(sha3)
     BitSequence hashVal[hashByteLength];
 
     Keccak_HashInstance hashInstance;
-    HashReturn ret = Keccak_HashInitialize(&hashInstance, rate, capacity, hashBitLength, 0x06);
+    HashReturn ret = Keccak_HashInitialize(&hashInstance, rate, capacity, hashBitLength, keccakMode ? 0x01 : 0x06);
     
     if (ret != SHA3_SUCCESS) {
         zend_error(E_WARNING, "Unsupported sha3() output length");
