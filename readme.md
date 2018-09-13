@@ -11,7 +11,7 @@ And this extention support old Keccak method.
 
 Installation
 ------------
-1. git clone https://github.com/strawbrary/php-sha3
+1. git clone https://github.com/soraclub/php-sha3.git
 1. cd php-sha3
 1. phpize
 1. ./configure --enable-sha3
